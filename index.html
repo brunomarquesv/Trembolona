@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <title>Meu Treino (PWA)</title>
+
+  <style>
+    :root { --bg:#0b1220; --card:#121a2b; --muted:#9aa6bf; --text:#e9eefc; --accent:#4da3ff; --ok:#39d98a; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    header { position: sticky; top:0; background: rgba(11,18,32,.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.08); z-index: 10; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 14px 16px; }
+    h1 { font-size: 18px; margin: 0 0 6px; }
+    .sub { color: var(--muted); font-size: 12px; margin: 0; display:flex; gap:10px; flex-wrap: wrap; align-items:center; }
+    .row { display:flex; gap:10px; flex-wrap: wrap; align-items:center; margin-top: 10px; }
+    .tabs { display:flex; gap: 8px; flex-wrap: wrap; }
+    button, input { font: inherit; }
+    .tabbtn { padding: 8px 10px; border: 1px solid rgba(255,255,255,.12); background: transparent; color: var(--text); border-radius: 10px; cursor:pointer; }
+    .tabbtn.active { background: rgba(77,163,255,.18); border-color: rgba(77,163,255,.4); }
+    .btn { padding: 8px 10px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: var(--text); border-radius: 10px; cursor:pointer; }
+    .btn.danger { background: rgba(255,102,102,.14); border-color: rgba(255,102,102,.35); }
+    .grid { display:grid; grid-template-columns: repeat(1, minmax(0,1fr)); gap: 12px; padding: 14px 16px 26px; max-width: 980px; margin: 0 auto; }
+    @media (min-width: 760px){ .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    .cardHeader { display:flex; gap: 12px; padding: 12px; align-items: center; }
+    .thumb { width: 84px; height: 84px; border-radius: 14px; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); overflow:hidden; flex: 0 0 auto; display:flex; align-items:center; justify-content:center; color: var(--muted); font-size: 12px; }
+    .thumb img { width:100%; height:100%; object-fit: cover; display:block; }
+    .title { margin:0; font-size: 15px; line-height: 1.2; }
+    .meta { margin: 6px 0 0; color: var(--muted); font-size: 12px; display:flex; gap:8px; flex-wrap:wrap; }
+    .pill { padding: 2px 8px; border:1px solid rgba(255,255,255,.12); border-radius: 999px; }
+    .cardBody { padding: 0 12px 12px; display:grid; gap: 10px; }
+    .line { display:flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .check { display:flex; align-items:center; gap:8px; }
+    .check input { width: 18px; height: 18px; }
+    .field { display:flex; gap:8px; flex-wrap: wrap; }
+    .field input { width: 96px; padding: 8px; border-radius: 10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: var(--text); }
+    .field input.wide { width: 100%; }
+    .doneTag { margin-left:auto; font-size: 12px; padding: 2px 8px; border-radius: 999px; border:1px solid rgba(255,255,255,.12); color: var(--muted); }
+    .done { color: var(--ok); border-color: rgba(57,217,138,.35); background: rgba(57,217,138,.10); }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Meu Treino (PWA)</h1>
+    <p class="sub">
+      <span id="today"></span>
+      <span class="pill" id="summaryPill"></span>
+      <span class="pill">Offline</span>
+    </p>
+
+    <div class="row">
+      <div class="tabs" id="tabs"></div>
+      <button class="btn danger" id="resetDayBtn" title="Desmarca todos os exercícios de hoje">Reset do dia</button>
+    </div>
+  </div>
+</header>
+
+<main class="grid" id="cards"></main>
+
+<!-- Modal de conclusão -->
+<div id="finishModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:9999; padding:18px;">
+  <div style="max-width:520px; margin:12vh auto 0; background:#121a2b; border:1px solid rgba(255,255,255,.10); border-radius:16px; padding:16px; box-shadow:0 18px 50px rgba(0,0,0,.35);">
+    <h2 style="margin:0 0 8px; font-size:18px;">Parabéns, você concluiu o treino de hoje.</h2>
+    <p style="margin:0 0 14px; color:#9aa6bf; font-size:13px; line-height:1.35;">
+      Ao clicar em <strong>Concluir</strong>, o app irá finalizar este treino e fazer o reset do dia automaticamente.
+    </p>
+    <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+      <button id="closeFinishModalBtn" class="btn">Cancelar</button>
+      <button id="finishAndResetBtn" class="btn" style="background:rgba(77,163,255,.18); border-color:rgba(77,163,255,.4);">Concluir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const WORKOUTS = {
+  "A": {
+    name: "A — Costas + Deltoide posterior + Bíceps",
+    exercises: [
+      { id:"a1", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina-2.gif" },
+      { id:"a2", name:"Remada Sentada no Aparelho", img:"images/Remada-Sentada-Aparelho.gif" },
+      { id:"a3", name:"Rosca Scott no Aparelho", img:"images/Rosca-Scott.gif" },
+      { id:"a4", name:"Pull Down", img:"images/Pull-Down.gif" },
+      { id:"a5", name:"Crucifixo Inverso no Peck Deck", img:"images/Crucifixo-Inverso-Peck-Deck.gif" },
+      { id:"a6", name:"Rosca Alternada com Halter", img:"images/Rosca-Alternada-Halter.gif" }
+    ]
+  },
+
+  "B": {
+    name: "B — Peito + Ombro + Tríceps",
+    exercises: [
+      { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto.gif" },
+      { id:"b2", name:"Peck Deck", img:"images/peck-deck.gif" },
+      { id:"b3", name:"Tríceps no Aparelho", img:"images/Triceps-Aparelho.gif" },
+      { id:"b4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
+      { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado.gif" },
+      { id:"b6", name:"Tríceps Corda na Polia", img:"images/Triceps-Corda-Polia.gif" },
+      { id:"b7", name:"Elevação Lateral Halter ou Polia", img:"images/Elevacao-Lateral-Polia.gif" }
+    ]
+  },
+
+  "C": {
+    name: "C — Pernas (máquinas) + Peito (isolamento)",
+    exercises: [
+      { id:"c1", name:"Abdutora de Quadril", img:"images/Abdutora-Quadril.gif" },
+      { id:"c2", name:"Leg Press 45°", img:"images/Leg-Press-45.gif" },
+      { id:"c6", name:"Cadeira Flexora", img:"images/Cadeira-Flexora.gif" },
+      { id:"c4", name:"Crucifixo na polia", img:"images/crucifixo-polia.gif" },
+      { id:"c5", name:"Panturrilha na Máquina", img:"images/Panturrilha-Maquina.gif" },
+      { id:"c3", name:"Cadeira Extensora", img:"images/Cadeira-Extensora.gif" }
+    ]
+  },
+
+  "D": {
+    name: "D — Costas + Braços",
+    exercises: [
+      { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross.png" },
+      { id:"d2", name:"Rosca 21 no Cross", img:"images/rosca-21.gif" },
+      { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-cross.gif" },
+      { id:"d4", name:"Puxada Neutra ou Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
+      { id:"d5", name:"Rosca Martelo", img:"images/Rosca-Martelo.gif" },
+      { id:"d6", name:"Tríceps Testa", img:"images/Triceps-Testa.gif" }
+    ]
+  }
+};
+
+const SETS_DEFAULT = 3;
+const STORAGE_KEY = "meuTreinoPWA_v1";
+const todayKey = new Date().toISOString().slice(0,10);
+
+function loadState(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return { activeWorkout: "A", logs: {}, loads: {}, reps: {} };
+  try { return JSON.parse(raw); } catch { return { activeWorkout: "A", logs: {}, loads: {}, reps: {} }; }
+}
+function saveState(state){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+let state = loadState();
+
+function setTodayText(){
+  const d = new Date();
+  const fmt = d.toLocaleDateString("pt-BR", { weekday:"long", year:"numeric", month:"2-digit", day:"2-digit" });
+  document.getElementById("today").textContent = fmt;
+}
+
+function ensureDayLog(){
+  if (!state.logs[todayKey]) state.logs[todayKey] = {};
+}
+
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = "";
+  Object.keys(WORKOUTS).forEach(k=>{
+    const btn = document.createElement("button");
+    btn.className = "tabbtn" + (state.activeWorkout===k ? " active" : "");
+    btn.textContent = k;
+    btn.onclick = ()=>{ state.activeWorkout = k; saveState(state); render(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderSummary(){
+  ensureDayLog();
+  const wk = WORKOUTS[state.activeWorkout];
+  const total = wk.exercises.length;
+  const doneCount = wk.exercises.filter(ex=>!!state.logs[todayKey][ex.id]).length;
+  document.getElementById("summaryPill").textContent = `${wk.name} • ${doneCount}/${total} concluídos`;
+}
+
+function showFinishModal(){
+  const modal = document.getElementById("finishModal");
+  if (modal) modal.style.display = "block";
+}
+
+function hideFinishModal(){
+  const modal = document.getElementById("finishModal");
+  if (modal) modal.style.display = "none";
+}
+
+function bindFinishModalHandlers(){
+  const closeBtn = document.getElementById("closeFinishModalBtn");
+  const finishBtn = document.getElementById("finishAndResetBtn");
+
+  if (closeBtn && !closeBtn.dataset.bound) {
+    closeBtn.dataset.bound = "1";
+    closeBtn.addEventListener("click", hideFinishModal);
+  }
+
+  if (finishBtn && !finishBtn.dataset.bound) {
+    finishBtn.dataset.bound = "1";
+    finishBtn.addEventListener("click", () => {
+      resetDay();
+      hideFinishModal();
+    });
+  }
+}
+
+function isWorkoutComplete(workoutKey){
+  ensureDayLog();
+  const wk = WORKOUTS[workoutKey];
+  if (!wk) return false;
+  return wk.exercises.every(ex => !!state.logs[todayKey][ex.id]);
+}
+
+function renderCards(){
+  ensureDayLog();
+  const cards = document.getElementById("cards");
+  cards.innerHTML = "";
+
+  const wk = WORKOUTS[state.activeWorkout];
+  wk.exercises.forEach(ex=>{
+    const done = !!state.logs[todayKey][ex.id];
+
+    const card = document.createElement("section");
+    card.className = "card";
+
+    const header = document.createElement("div");
+    header.className = "cardHeader";
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    const imgtag = document.createElement("img");
+    imgtag.src = ex.img;
+    imgtag.alt = ex.name;
+    imgtag.onerror = ()=>{ thumb.textContent = "Sem foto"; };
+    thumb.appendChild(imgtag);
+
+    const info = document.createElement("div");
+    info.style.minWidth = "0";
+    const title = document.createElement("h3");
+    title.className = "title";
+    title.textContent = ex.name;
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    const m1 = document.createElement("span");
+    m1.className = "pill";
+    m1.textContent = `${SETS_DEFAULT} séries`;
+    meta.appendChild(m1);
+
+    info.appendChild(title);
+    info.appendChild(meta);
+
+    const doneTag = document.createElement("span");
+    doneTag.className = "doneTag" + (done ? " done" : "");
+    doneTag.textContent = done ? "Concluído" : "Pendente";
+
+    header.appendChild(thumb);
+    header.appendChild(info);
+    header.appendChild(doneTag);
+
+    const body = document.createElement("div");
+    body.className = "cardBody";
+
+    const line1 = document.createElement("div");
+    line1.className = "line";
+
+    const check = document.createElement("label");
+    check.className = "check";
+    const chk = document.createElement("input");
+    chk.type = "checkbox";
+    chk.checked = done;
+    chk.onchange = ()=>{
+      state.logs[todayKey][ex.id] = chk.checked;
+      saveState(state);
+
+      if (chk.checked && isWorkoutComplete(state.activeWorkout)) {
+        showFinishModal();
+      }
+
+      render();
+    };
+
+    const chkTxt = document.createElement("span");
+    chkTxt.textContent = "Marcar como feito";
+    check.appendChild(chk);
+    check.appendChild(chkTxt);
+
+    line1.appendChild(check);
+
+    const line2 = document.createElement("div");
+    line2.className = "field";
+
+    const load = document.createElement("input");
+    load.placeholder = "Carga";
+    load.value = state.loads[ex.id] ?? "";
+    load.onchange = ()=>{ state.loads[ex.id] = load.value; saveState(state); };
+
+    const reps = document.createElement("input");
+    reps.placeholder = "Reps";
+    reps.value = state.reps[ex.id] ?? "";
+    reps.onchange = ()=>{ state.reps[ex.id] = reps.value; saveState(state); };
+
+    line2.appendChild(load);
+    line2.appendChild(reps);
+
+    body.appendChild(line1);
+    body.appendChild(line2);
+
+    card.appendChild(header);
+    card.appendChild(body);
+    cards.appendChild(card);
+  });
+}
+
+function resetDay(){
+  ensureDayLog();
+  const wk = WORKOUTS[state.activeWorkout];
+  wk.exercises.forEach(ex=>{ state.logs[todayKey][ex.id] = false; });
+  saveState(state);
+  render();
+}
+
+document.getElementById("resetDayBtn").onclick = resetDay;
+
+function render(){
+  setTodayText();
+  renderTabs();
+  renderSummary();
+  bindFinishModalHandlers(); // garante que os botões do modal funcionem
+  renderCards();
+}
+render();
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
+
+</script>
+
+</body>
+</html>
