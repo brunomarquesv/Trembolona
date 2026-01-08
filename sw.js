@@ -1,4 +1,5 @@
-const CACHE_NAME = "treino-pwa";
+const CACHE_NAME = "Casal Maromba";
+
 
 // Arquivos “do app” (shell) — cache-first
 const ASSETS = [
@@ -7,7 +8,18 @@ const ASSETS = [
   "./manifest.webmanifest",
   "./sw.js",
 ];
-
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = "";
+  Object.keys(WORKOUTS).forEach(k=>{
+    const wk = WORKOUTS[k];
+    const btn = document.createElement("button");
+    btn.className = "tabbtn" + (state.activeWorkout===k ? " active" : "");
+    btn.textContent = wk.tabLabel ?? k; // <<< aqui muda o que aparece na aba
+    btn.onclick = ()=>{ state.activeWorkout = k; saveState(state); render(); };
+    tabs.appendChild(btn);
+  });
+}
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
@@ -58,3 +70,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
