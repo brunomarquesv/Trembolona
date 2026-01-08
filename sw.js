@@ -1,4 +1,4 @@
-const CACHE_NAME = "Casal Maromba";
+const CACHE_NAME = "treino-pwa-v99";
 
 
 // Arquivos “do app” (shell) — cache-first
@@ -70,4 +70,5 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
