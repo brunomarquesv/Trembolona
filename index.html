@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b1220" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <title>Meu Treino (PWA)</title>
+  <title>Casal Maromba</title>
 
   <style>
     :root { --bg:#0b1220; --card:#121a2b; --muted:#9aa6bf; --text:#e9eefc; --accent:#4da3ff; --ok:#39d98a; }
@@ -77,52 +77,98 @@
 
 <script>
 const WORKOUTS = {
+  // =========================
+  // Bruno
+  // =========================
   "A": {
-    name: "A — Costas + Deltoide posterior + Bíceps",
+    name: "Bruno - A — Costas + Deltoide posterior + Bíceps",
     exercises: [
-      { id:"a1", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina-2.gif" },
-      { id:"a2", name:"Remada Sentada no Aparelho", img:"images/Remada-Sentada-Aparelho.gif" },
-      { id:"a3", name:"Rosca Scott no Aparelho", img:"images/Rosca-Scott.gif" },
+      // Nova ordem (mantendo IDs originais)
+      { id:"a1", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-na-Maquina.gif" },
+      { id:"a3", name:"Rosca Scott no Aparelho", img:"images/Rosca-Scott-no-Aparelho.gif" },
+      { id:"a2", name:"Remada Sentada no Aparelho", img:"images/Remada-Sentada-no-Aparelho.gif" },
       { id:"a4", name:"Pull Down", img:"images/Pull-Down.gif" },
-      { id:"a5", name:"Crucifixo Inverso no Peck Deck", img:"images/Crucifixo-Inverso-Peck-Deck.gif" },
-      { id:"a6", name:"Rosca Alternada com Halter", img:"images/Rosca-Alternada-Halter.gif" }
+      { id:"a6", name:"Rosca Alternada com Halter", img:"images/Rosca-Alternada-com-Halter.gif" },
+      { id:"a5", name:"Crucifixo Inverso no Peck Deck", img:"images/Crucifixo-Inverso-no-Peck-Deck.gif" }
     ]
   },
 
   "B": {
-    name: "B — Peito + Ombro + Tríceps",
+    name: "Bruno - B — Peito + Ombro + Tríceps",
     exercises: [
-      { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto.gif" },
-      { id:"b2", name:"Peck Deck", img:"images/peck-deck.gif" },
-      { id:"b3", name:"Tríceps no Aparelho", img:"images/Triceps-Aparelho.gif" },
-      { id:"b4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
-      { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado.gif" },
-      { id:"b6", name:"Tríceps Corda na Polia", img:"images/Triceps-Corda-Polia.gif" },
-      { id:"b7", name:"Elevação Lateral Halter ou Polia", img:"images/Elevacao-Lateral-Polia.gif" }
+      // Nova ordem (mantendo IDs originais)
+      { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto-no-Aparelho.gif" },
+      { id:"b3", name:"Tríceps no Aparelho", img:"images/Triceps-no-Aparelho.gif" },
+      { id:"b4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-no-Aparelho.gif" },
+      { id:"b2", name:"Peck Deck", img:"images/Peck-Deck.gif" },
+      { id:"b6", name:"Tríceps Corda na Polia", img:"images/Triceps-Corda-na-Polia.gif" },
+      { id:"b7", name:"Elevação Lateral Halter ou Polia", img:"images/Elevacao-Lateral-Halter-ou-Polia.gif" },
+      { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado-no-Aparelho.gif" }
     ]
   },
 
   "C": {
-    name: "C — Pernas (máquinas) + Peito (isolamento)",
+    name: "Bruno - C — Pernas (máquinas) + Peito (isolamento)",
     exercises: [
-      { id:"c1", name:"Abdutora de Quadril", img:"images/Abdutora-Quadril.gif" },
+      // Nova ordem (mantendo IDs originais)
+      { id:"c1", name:"Abdutora de Quadril", img:"images/Abdutora-de-Quadril.gif" },
       { id:"c2", name:"Leg Press 45°", img:"images/Leg-Press-45.gif" },
+      { id:"c4", name:"Crucifixo na Polia", img:"images/Crucifixo-na-Polia.gif" },
       { id:"c6", name:"Cadeira Flexora", img:"images/Cadeira-Flexora.gif" },
-      { id:"c4", name:"Crucifixo na polia", img:"images/crucifixo-polia.gif" },
-      { id:"c5", name:"Panturrilha na Máquina", img:"images/Panturrilha-Maquina.gif" },
+      { id:"c5", name:"Panturrilha na Máquina", img:"images/Panturrilha-na-Maquina.gif" },
       { id:"c3", name:"Cadeira Extensora", img:"images/Cadeira-Extensora.gif" }
     ]
   },
 
   "D": {
-    name: "D — Costas + Braços",
+    name: "Bruno - D — Costas + Braços",
     exercises: [
-      { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross-2.gif" },
-      { id:"d2", name:"Rosca 21 no Cross", img:"images/rosca-21.gif" },
-      { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-cross.gif" },
-      { id:"d4", name:"Puxada Neutra ou Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
+      // Mantém a ordem como está (IDs preservados)
+      { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-no-Cross.gif" },
+      { id:"d2", name:"Rosca 21 no Cross", img:"images/Rosca-21-no-Cross.gif" },
+      { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-no-Cross.gif" },
+      { id:"d4", name:"Puxada Neutra ou Triângulo", img:"images/Puxada-Neutra-ou-Triangulo.gif" },
       { id:"d5", name:"Rosca Martelo", img:"images/Rosca-Martelo.gif" },
       { id:"d6", name:"Tríceps Testa", img:"images/Triceps-Testa.gif" }
+    ]
+  },
+
+  // =========================
+  // Vitória
+  // =========================
+  "V-A": {
+    name: "Vitória - A — Glúteos + Posterior + Sustentação do Joelho",
+    exercises: [
+      { id:"va1", name:"Hip Thrust no Aparelho ou Smith", img:"images/Hip-Thrust-no-Aparelho-ou-Smith.gif" },
+      { id:"va2", name:"Leg Press 45° (Pés Altos, Amplitude Parcial)", img:"images/Leg-Press-45.gif" },
+      { id:"va3", name:"Cadeira Abdutora", img:"images/Abdutora-de-Quadril.gif" },
+      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento-Terra-Romeno-com-Halteres.gif" },
+      { id:"va5", name:"Wall Sit (Isométrico 45–60°)", img:"images/Wall-Sit-Isometrico-45-60.gif" },
+      { id:"va6", name:"Prancha Isométrica", img:"images/Prancha-Isometrica.gif" }
+    ]
+  },
+
+  "V-B": {
+    name: "Vitória - B — Membros Superiores",
+    exercises: [
+      { id:"vb1", name:"Supino no Aparelho", img:"images/Supino-Reto-no-Aparelho.gif" },
+      { id:"vb2", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-na-Maquina.gif" },
+      { id:"vb3", name:"Remada Sentada no Aparelho (Pegada Neutra)", img:"images/Remada-Sentada-no-Aparelho.gif" },
+      { id:"vb4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-no-Aparelho.gif" },
+      { id:"vb5", name:"Elevação Lateral com Halteres (Sentada)", img:"images/Elevacao-Lateral-com-Halteres-Sentada.gif" },
+      { id:"vb6", name:"Crucifixo no Peck Deck", img:"images/Peck-Deck.gif" }
+    ]
+  },
+
+  "V-C": {
+    name: "Vitória - C — Estabilização + Glúteos + Adutores",
+    exercises: [
+      { id:"vc1", name:"Extensão de Quadril no Aparelho ou no Cabo (Em Pé)", img:"images/Extensao-de-Quadril-no-Aparelho-ou-no-Cabo-Em-Pe.gif" },
+      { id:"vc2", name:"Cadeira Adutora", img:"images/Cadeira-Adutora.gif" },
+      { id:"vc3", name:"Abdução de Quadril no Cabo (Em Pé)", img:"images/Abducao-de-Quadril-no-Cabo-Em-Pe.gif" },
+      { id:"vc4", name:"Kickback no Cabo", img:"images/Kickback-no-Cabo.gif" },
+      { id:"vc5", name:"Ponte Isométrica no Solo (Bilateral)", img:"images/Ponte-Isometrica-no-Solo-Bilateral.gif" },
+      { id:"vc6", name:"Prancha Lateral com Joelhos Apoiados", img:"images/Prancha-Lateral-com-Joelhos-Apoiados.gif" }
     ]
   }
 };
@@ -320,17 +366,15 @@ function render(){
   setTodayText();
   renderTabs();
   renderSummary();
-  bindFinishModalHandlers(); // garante que os botões do modal funcionem
+  bindFinishModalHandlers();
   renderCards();
 }
 render();
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js");
 }
-
 </script>
 
 </body>
 </html>
-
-
