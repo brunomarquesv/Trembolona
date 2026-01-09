@@ -80,7 +80,7 @@ const WORKOUTS = {
   // =========================
   // Bruno
   // =========================
-  "A": {
+  "B-A": {
   name: "Bruno - A — Costas + Deltoide posterior + Bíceps",
   tabLabel: "Bruno - A",
   exercises: [
@@ -93,7 +93,7 @@ const WORKOUTS = {
   ]
 },
 
-  "B": {
+  "B-B": {
   name: "Bruno - B — Peito + Ombro + Tríceps",
   tabLabel: "Bruno - B",
   exercises: [
@@ -107,7 +107,7 @@ const WORKOUTS = {
   ]
 },
 
-  "C": {
+  "B-C": {
   name: "Bruno - C — Pernas (máquinas) + Peito (isolamento)",
   tabLabel: "Bruno - C",
   exercises: [
@@ -120,15 +120,15 @@ const WORKOUTS = {
   ]
 },
   
-"D": {
+"B-D": {
   name: "Bruno - D — Costas + Braços",
   tabLabel: "Bruno - D",
   exercises: [
-    { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross-2.gif" },
     { id:"d2", name:"Rosca 21 no Cross", img:"images/rosca-21.gif" },
+    { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross-2.gif" },
     { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-cross.gif" },
-    { id:"d4", name:"Puxada Neutra ou Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
     { id:"d5", name:"Rosca Martelo", img:"images/Rosca-Martelo.gif" },
+    { id:"d4", name:"Puxada Neutra ou Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
     { id:"d6", name:"Tríceps Testa", img:"images/Triceps-Testa.gif" }
   ]
 },
@@ -137,12 +137,12 @@ const WORKOUTS = {
     name: "Vitória - A — Glúteos + Posterior + Sustentação do Joelho",
 tabLabel: "Vitória - A",
     exercises: [
-      { id:"va1", name:"Hip Thrust no Aparelho ou Smith", img:"images/Hip-Thrust-no-Aparelho-ou-Smith.gif" },
-      { id:"va2", name:"Leg Press 45° (Pés Altos, Amplitude Parcial)", img:"images/Leg-Press-45.gif" },
+      { id:"va1", name:"Hip Thrust no Aparelho ou Smith", img:"images/Hip-Thrust-Aparelho.gif" },
       { id:"va3", name:"Cadeira Abdutora", img:"images/Abdutora-Quadril.gif" },
-      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento-Terra-Romeno-com-Halteres.gif" },
-      { id:"va5", name:"Wall Sit (Isométrico 45–60°)", img:"images/Wall-Sit-Isometrico-45-60.gif" },
+      { id:"va2", name:"Leg Press 45° (Pés Altos, Amplitude Parcial)", img:"images/Leg-Press-45.gif" },
       { id:"va6", name:"Prancha Isométrica", img:"images/Prancha-Isometrica.gif" }
+      { id:"va5", name:"Wall Sit (Isométrico 45–60°)", img:"images/Wall-Sit-Isometrico.gif" },
+      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento-Terra-Romeno.gif" },
     ]
   },
 
@@ -151,10 +151,10 @@ tabLabel: "Vitória - A",
     tabLabel: "Vitória - B",
     exercises: [
       { id:"vb1", name:"Supino no Aparelho", img:"images/Supino-Reto.gif" },
+      { id:"vb5", name:"Elevação Lateral com Halteres (Sentada)", img:"images/Elevacao-Lateral-com-Halteres-Sentada.gif" },
       { id:"vb2", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina2.gif" },
       { id:"vb3", name:"Remada Sentada no Aparelho (Pegada Neutra)", img:"images/Remada-Sentada-Aparelho.gif" },
       { id:"vb4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
-      { id:"vb5", name:"Elevação Lateral com Halteres (Sentada)", img:"images/Elevacao-Lateral-com-Halteres-Sentada.gif" },
       { id:"vb6", name:"Crucifixo no Peck Deck", img:"images/peck-deck.gif" }
     ]
   },
@@ -163,10 +163,10 @@ tabLabel: "Vitória - A",
     name: "Vitória - C — Estabilização + Glúteos + Adutores",
     tabLabel: "Vitória - C",
     exercises: [
-      { id:"vc1", name:"Extensão de Quadril no Aparelho ou no Cabo (Em Pé)", img:"images/Extensao-de-Quadril-no-Aparelho-ou-no-Cabo-Em-Pe.gif" },
-      { id:"vc2", name:"Cadeira Adutora", img:"images/Cadeira-Adutora.gif" },
+      { id:"vc1", name:"Extensão de Quadril no Cabo (Em Pé)", img:"images/Extensao-de-Quadril-Cabo.gif" },
       { id:"vc3", name:"Abdução de Quadril no Cabo (Em Pé)", img:"images/Abducao-de-Quadril-no-Cabo-Em-Pe.gif" },
       { id:"vc4", name:"Kickback no Cabo", img:"images/Kickback-no-Cabo.gif" },
+      { id:"vc2", name:"Cadeira Adutora", img:"images/Cadeira-Adutora.gif" },
       { id:"vc5", name:"Ponte Isométrica no Solo (Bilateral)", img:"images/Ponte-Isometrica-no-Solo-Bilateral.gif" },
       { id:"vc6", name:"Prancha Lateral com Joelhos Apoiados", img:"images/Prancha-Lateral-com-Joelhos-Apoiados.gif" }
     ]
@@ -378,6 +378,7 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
+
 
 
 
