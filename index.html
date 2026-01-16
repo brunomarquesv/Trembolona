@@ -88,7 +88,7 @@ const WORKOUTS = {
     { id:"a3", name:"Rosca Scott no Aparelho", img:"images/Rosca-Scott.gif" },
     { id:"a2", name:"Remada Sentada no Aparelho", img:"images/Remada-Sentada-Aparelho.gif" },
     { id:"a4", name:"Pull Down", img:"images/Pull-Down.gif" },
-    { id:"a6", name:"Rosca Alternada com Halter", img:"images/Rosca-Alternada-Halter.gif" },
+    { id:"a6", name:"Rosca Bayesian", img:"images/bayesian.gif" },
     { id:"a5", name:"Crucifixo Inverso no Peck Deck", img:"images/Crucifixo-Inverso-Peck-Deck.gif" }
   ]
 },
@@ -97,13 +97,14 @@ const WORKOUTS = {
   name: "Bruno - B — Peito + Ombro + Tríceps",
   tabLabel: "Bruno - B",
   exercises: [
-    { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto.gif" },
+    { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado.gif" }
     { id:"b3", name:"Tríceps no Aparelho", img:"images/Triceps-Aparelho.gif" },
     { id:"b4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
     { id:"b2", name:"Peck Deck", img:"images/peck-deck.gif" },
     { id:"b6", name:"Tríceps Corda na Polia", img:"images/Triceps-Corda-Polia.gif" },
     { id:"b7", name:"Elevação Lateral Halter ou Polia", img:"images/Elevacao-Lateral-Polia.gif" },
-    { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado.gif" }
+    { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto.gif" },
+
   ]
 },
 
@@ -124,12 +125,12 @@ const WORKOUTS = {
   name: "Bruno - D — Costas + Braços",
   tabLabel: "Bruno - D",
   exercises: [
-    { id:"d2", name:"Rosca 21 no Cross", img:"images/rosca-21.gif" },
+    { id:"d2", name:"Rosca barra no Cross", img:"images/rosca-21.gif" },
     { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross-2.gif" },
     { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-cross.gif" },
-    { id:"d5", name:"Rosca Martelo", img:"images/Rosca-Martelo.gif" },
-    { id:"d4", name:"Puxada Neutra ou Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
-    { id:"d6", name:"Tríceps Testa", img:"images/Triceps-Testa.gif" }
+    { id:"d5", name:"Rosca Bíceps Unilateral na Polia Alta", img:"images/High-Cable-Single-Arm-Bicep-Curl.gif" },
+    { id:"d4", name:"Puxada Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
+    { id:"d6", name:"Tríceps Francês", img:"images/Triceps-Testa.gif" }
   ]
 },
 
@@ -141,8 +142,8 @@ tabLabel: "Vitória - A",
       { id:"va3", name:"Cadeira Abdutora", img:"images/Abdutora-Quadril.gif" },
       { id:"va2", name:"Leg Press 45° (Pés Altos, Amplitude Parcial)", img:"images/Leg-Press-45.gif" },
       { id:"va6", name:"Prancha Isométrica", img:"images/Prancha-Isometrica.gif" }
-      { id:"va5", name:"Wall Sit (Isométrico 45–60°)", img:"images/Wall-Sit-Isometrico.gif" },
-      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento-Terra-Romeno.gif" },
+      { id:"va5", name:"Wall Sit (Isométrico 45–60°)", img:"images/Wall_Sit.gif" },
+      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento_Terra_Romeno.gif" },
     ]
   },
 
@@ -152,7 +153,7 @@ tabLabel: "Vitória - A",
     exercises: [
       { id:"vb1", name:"Supino no Aparelho", img:"images/Supino-Reto.gif" },
       { id:"vb5", name:"Elevação Lateral com Halteres (Sentada)", img:"images/Elevacao-Lateral-com-Halteres-Sentada.gif" },
-      { id:"vb2", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina2.gif" },
+      { id:"vb2", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina-2.gif" },
       { id:"vb3", name:"Remada Sentada no Aparelho (Pegada Neutra)", img:"images/Remada-Sentada-Aparelho.gif" },
       { id:"vb4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
       { id:"vb6", name:"Crucifixo no Peck Deck", img:"images/peck-deck.gif" }
@@ -163,7 +164,7 @@ tabLabel: "Vitória - A",
     name: "Vitória - C — Estabilização + Glúteos + Adutores",
     tabLabel: "Vitória - C",
     exercises: [
-      { id:"vc1", name:"Extensão de Quadril no Cabo (Em Pé)", img:"images/Extensao-de-Quadril-Cabo.gif" },
+      { id:"vc1", name:"Extensão de Quadril no Cabo (Em Pé)", img:"images/Extensao_de_Quadril_Cabo.gif" },
       { id:"vc3", name:"Abdução de Quadril no Cabo (Em Pé)", img:"images/Abducao-de-Quadril-no-Cabo-Em-Pe.gif" },
       { id:"vc4", name:"Kickback no Cabo", img:"images/Kickback-no-Cabo.gif" },
       { id:"vc2", name:"Cadeira Adutora", img:"images/Cadeira-Adutora.gif" },
@@ -378,6 +379,7 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
+
 
 
 
