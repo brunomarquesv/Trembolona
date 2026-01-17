@@ -42,6 +42,7 @@
     .done { color: var(--ok); border-color: rgba(57,217,138,.35); background: rgba(57,217,138,.10); }
   </style>
 </head>
+
 <body>
 <header>
   <div class="wrap">
@@ -81,69 +82,71 @@ const WORKOUTS = {
   // Bruno
   // =========================
   "B-A": {
-  name: "Bruno - A — Costas + Deltoide posterior + Bíceps",
-  tabLabel: "Bruno - A",
-  exercises: [
-    { id:"a1", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina-2.gif" },
-    { id:"a3", name:"Rosca Scott no Aparelho", img:"images/Rosca-Scott.gif" },
-    { id:"a2", name:"Remada Sentada no Aparelho", img:"images/Remada-Sentada-Aparelho.gif" },
-    { id:"a4", name:"Pull Down", img:"images/Pull-Down.gif" },
-    { id:"a6", name:"Rosca Bayesian", img:"images/bayesian.gif" },
-    { id:"a5", name:"Crucifixo Inverso no Peck Deck", img:"images/Crucifixo-Inverso-Peck-Deck.gif" }
-  ]
-},
+    name: "Bruno - A — Costas + Deltoide posterior + Bíceps",
+    tabLabel: "Bruno - A",
+    exercises: [
+      { id:"a1", name:"Puxada Frontal na Máquina", img:"images/Puxada-Frontal-Maquina-2.gif" },
+      { id:"a3", name:"Rosca Scott no Aparelho", img:"images/Rosca-Scott.gif" },
+      { id:"a2", name:"Remada Sentada no Aparelho", img:"images/Remada-Sentada-Aparelho.gif" },
+      { id:"a4", name:"Pull Down", img:"images/Pull-Down.gif" },
+      { id:"a6", name:"Rosca Bayesian", img:"images/bayesian.gif" },
+      { id:"a5", name:"Crucifixo Inverso no Peck Deck", img:"images/Crucifixo-Inverso-Peck-Deck.gif" }
+    ]
+  },
 
   "B-B": {
-  name: "Bruno - B — Peito + Ombro + Tríceps",
-  tabLabel: "Bruno - B",
-  exercises: [
-    { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado.gif" }
-    { id:"b3", name:"Tríceps no Aparelho", img:"images/Triceps-Aparelho.gif" },
-    { id:"b4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
-    { id:"b2", name:"Peck Deck", img:"images/peck-deck.gif" },
-    { id:"b6", name:"Tríceps Corda na Polia", img:"images/Triceps-Corda-Polia.gif" },
-    { id:"b7", name:"Elevação Lateral Halter ou Polia", img:"images/Elevacao-Lateral-Polia.gif" },
-    { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto.gif" },
-
-  ]
-},
+    name: "Bruno - B — Peito + Ombro + Tríceps",
+    tabLabel: "Bruno - B",
+    exercises: [
+      { id:"b5", name:"Supino Inclinado no Aparelho", img:"images/Supino-Inclinado.gif" },
+      { id:"b3", name:"Tríceps no Aparelho", img:"images/Triceps-Aparelho.gif" },
+      { id:"b4", name:"Desenvolvimento no Aparelho", img:"images/Desenvolvimento-Aparelho.gif" },
+      { id:"b2", name:"Peck Deck", img:"images/peck-deck.gif" },
+      { id:"b6", name:"Tríceps Corda na Polia", img:"images/Triceps-Corda-Polia.gif" },
+      { id:"b7", name:"Elevação Lateral Halter ou Polia", img:"images/Elevacao-Lateral-Polia.gif" },
+      { id:"b1", name:"Supino Reto no Aparelho", img:"images/Supino-Reto.gif" }
+    ]
+  },
 
   "B-C": {
-  name: "Bruno - C — Pernas (máquinas) + Peito (isolamento)",
-  tabLabel: "Bruno - C",
-  exercises: [
-    { id:"c1", name:"Abdutora de Quadril", img:"images/Abdutora-Quadril.gif" },
-    { id:"c2", name:"Leg Press 45°", img:"images/Leg-Press-45.gif" },
-    { id:"c4", name:"Crucifixo na polia", img:"images/crucifixo-polia.gif" },
-    { id:"c6", name:"Cadeira Flexora", img:"images/Cadeira-Flexora.gif" },
-    { id:"c5", name:"Panturrilha na Máquina", img:"images/Panturrilha-Maquina.gif" },
-    { id:"c3", name:"Cadeira Extensora", img:"images/Cadeira-Extensora.gif" }
-  ]
-},
-  
-"B-D": {
-  name: "Bruno - D — Costas + Braços",
-  tabLabel: "Bruno - D",
-  exercises: [
-    { id:"d2", name:"Rosca barra no Cross", img:"images/rosca-21.gif" },
-    { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross-2.gif" },
-    { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-cross.gif" },
-    { id:"d5", name:"Rosca Bíceps Unilateral na Polia Alta", img:"images/High-Cable-Single-Arm-Bicep-Curl.gif" },
-    { id:"d4", name:"Puxada Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
-    { id:"d6", name:"Tríceps Francês", img:"images/Triceps-Testa.gif" }
-  ]
-},
+    name: "Bruno - C — Pernas (máquinas) + Peito (isolamento)",
+    tabLabel: "Bruno - C",
+    exercises: [
+      { id:"c1", name:"Abdutora de Quadril", img:"images/Abdutora-Quadril.gif" },
+      { id:"c2", name:"Leg Press 45°", img:"images/Leg-Press-45.gif" },
+      { id:"c4", name:"Crucifixo na polia", img:"images/crucifixo-polia.gif" },
+      { id:"c6", name:"Cadeira Flexora", img:"images/Cadeira-Flexora.gif" },
+      { id:"c5", name:"Panturrilha na Máquina", img:"images/Panturrilha-Maquina.gif" },
+      { id:"c3", name:"Cadeira Extensora", img:"images/Cadeira-Extensora.gif" }
+    ]
+  },
 
+  "B-D": {
+    name: "Bruno - D — Costas + Braços",
+    tabLabel: "Bruno - D",
+    exercises: [
+      { id:"d2", name:"Rosca barra no Cross", img:"images/rosca-21.gif" },
+      { id:"d1", name:"Remada Alta no Cross", img:"images/Remada-Alta-Cross-2.gif" },
+      { id:"d3", name:"Tríceps Barra no Cross", img:"images/Triceps-Barra-cross.gif" },
+      { id:"d5", name:"Rosca Bíceps Unilateral na Polia Alta", img:"images/High-Cable-Single-Arm-Bicep-Curl.gif" },
+      { id:"d4", name:"Puxada Triângulo", img:"images/Puxada-Neutra-Triangulo.gif" },
+      { id:"d6", name:"Tríceps Francês", img:"images/Triceps-Testa.gif" }
+    ]
+  },
+
+  // =========================
+  // Vitória
+  // =========================
   "V-A": {
     name: "Vitória - A — Glúteos + Posterior + Sustentação do Joelho",
-tabLabel: "Vitória - A",
+    tabLabel: "Vitória - A",
     exercises: [
       { id:"va1", name:"Hip Thrust no Aparelho ou Smith", img:"images/Hip-Thrust-Aparelho.gif" },
       { id:"va3", name:"Cadeira Abdutora", img:"images/Abdutora-Quadril.gif" },
       { id:"va2", name:"Leg Press 45° (Pés Altos, Amplitude Parcial)", img:"images/Leg-Press-45.gif" },
-      { id:"va6", name:"Prancha Isométrica", img:"images/Prancha-Isometrica.gif" }
+      { id:"va6", name:"Prancha Isométrica", img:"images/Prancha-Isometrica.gif" },
       { id:"va5", name:"Wall Sit (Isométrico 45–60°)", img:"images/Wall_Sit.gif" },
-      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento_Terra_Romeno.gif" },
+      { id:"va4", name:"Levantamento Terra Romeno com Halteres", img:"images/Levantamento_Terra_Romeno.gif" }
     ]
   },
 
@@ -180,8 +183,21 @@ const todayKey = new Date().toISOString().slice(0,10);
 
 function loadState(){
   const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return { activeWorkout: "A", logs: {}, loads: {}, reps: {} };
-  try { return JSON.parse(raw); } catch { return { activeWorkout: "A", logs: {}, loads: {}, reps: {} }; }
+  // activeWorkout precisa existir no WORKOUTS (no seu caso "B-A")
+  if (!raw) return { activeWorkout: "B-A", logs: {}, loads: {}, reps: {} };
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed.activeWorkout || !WORKOUTS[parsed.activeWorkout]) {
+      parsed.activeWorkout = "B-A";
+    }
+    parsed.logs ??= {};
+    parsed.loads ??= {};
+    parsed.reps ??= {};
+    return parsed;
+  } catch {
+    return { activeWorkout: "B-A", logs: {}, loads: {}, reps: {} };
+  }
 }
 function saveState(state){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -200,10 +216,12 @@ function ensureDayLog(){
 function renderTabs(){
   const tabs = document.getElementById("tabs");
   tabs.innerHTML = "";
+
   Object.keys(WORKOUTS).forEach(k=>{
+    const wk = WORKOUTS[k];
     const btn = document.createElement("button");
     btn.className = "tabbtn" + (state.activeWorkout===k ? " active" : "");
-    btn.textContent = k;
+    btn.textContent = wk.tabLabel ?? k; // usa tabLabel (sem mudar nomes)
     btn.onclick = ()=>{ state.activeWorkout = k; saveState(state); render(); };
     tabs.appendChild(btn);
   });
@@ -212,6 +230,8 @@ function renderTabs(){
 function renderSummary(){
   ensureDayLog();
   const wk = WORKOUTS[state.activeWorkout];
+  if (!wk) return;
+
   const total = wk.exercises.length;
   const doneCount = wk.exercises.filter(ex=>!!state.logs[todayKey][ex.id]).length;
   document.getElementById("summaryPill").textContent = `${wk.name} • ${doneCount}/${total} concluídos`;
@@ -258,6 +278,8 @@ function renderCards(){
   cards.innerHTML = "";
 
   const wk = WORKOUTS[state.activeWorkout];
+  if (!wk) return;
+
   wk.exercises.forEach(ex=>{
     const done = !!state.logs[todayKey][ex.id];
 
@@ -356,6 +378,8 @@ function renderCards(){
 function resetDay(){
   ensureDayLog();
   const wk = WORKOUTS[state.activeWorkout];
+  if (!wk) return;
+
   wk.exercises.forEach(ex=>{ state.logs[todayKey][ex.id] = false; });
   saveState(state);
   render();
@@ -379,14 +403,3 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
