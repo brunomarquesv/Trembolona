@@ -1,4 +1,4 @@
-const CACHE_NAME = "treino-pwa-v99";
+const CACHE_NAME = "treino-pwa-v9";
 
 
 // Arquivos “do app” (shell) — cache-first
@@ -70,5 +70,6 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
