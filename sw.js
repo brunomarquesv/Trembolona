@@ -2,7 +2,7 @@
 // Não altera nomes de séries nem imagens do app.
 // Ajuste o CACHE_NAME quando quiser forçar atualização.
 
-const CACHE_NAME = "treino-pwa-v99";
+const CACHE_NAME = "treino-pwa-v100";
 
 // Arquivos do app (shell)
 const ASSETS = [
@@ -67,3 +67,4 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
