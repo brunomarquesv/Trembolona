@@ -2,7 +2,7 @@
 // Não altera nomes de séries nem imagens do app.
 // Ajuste o CACHE_NAME quando quiser forçar atualização.
 
-const CACHE_NAME = "treino-pwa";
+const CACHE_NAME = "treino-pwa-v1";
 
 // Arquivos do app (shell)
 const ASSETS = [
@@ -24,7 +24,11 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.map((k) => (k !== CACHE_NAME ? caches.delete(k) : null)))
+      Promise.all(
+        keys
+          .filter((k) => k !== CACHE_NAME)
+          .map((k) => caches.delete(k))
+      )
     )
   );
   self.clients.claim();
@@ -36,6 +40,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
+  // Só tratamos GET
   if (req.method !== "GET") return;
 
   const url = new URL(req.url);
@@ -45,6 +50,9 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
+          // Só cacheia respostas OK (evita cachear 404/opaque)
+          if (!res || res.status !== 200 || res.type === "opaque") return res;
+
           const copy = res.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
           return res;
@@ -60,6 +68,9 @@ self.addEventListener("fetch", (event) => {
       if (cached) return cached;
 
       return fetch(req).then((res) => {
+        // Só cacheia respostas OK (evita cachear 404/opaque)
+        if (!res || res.status !== 200 || res.type === "opaque") return res;
+
         const copy = res.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
         return res;
@@ -67,7 +78,3 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
-
-
-
