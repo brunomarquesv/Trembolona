@@ -133,18 +133,20 @@ const WORKOUTS = {
       { id:"d6", name:"Tríceps Francês", img:"images/Triceps-Testa.gif" }
     ]
   },
-"B-E": {
-  name: "Bruno - E — Trapézio + Antebraço + Estabilizadores",
-  tabLabel: "B-E",
-  exercises: [
-    { id:"be2", name:"Face Pull com Corda", img:"images/Face-Pull.gif" },
-    { id:"be3", name:"Rotação Externa no Cabo", img:"images/Rotacao-Externa-Cabo.gif" },
-    { id:"be4", name:"Rosca Martelo", img:"images/Rosca-Martelo.gif" },
-    { id:"be5", name:"Rosca Punho (Wrist Curl)", img:"images/Rosca-Punho.gif" },
-    { id:"be6", name:"Rosca Punho Reversa", img:"images/Rosca-Punho-Reversa.gif" }
-    { id:"be1", name:"Encolhimento com Halteres (Isometria 2–3s)", img:"images/Encolhimento-Halteres.gif" },
-  ]
-},
+
+  "B-E": {
+    name: "Bruno - E — Trapézio + Antebraço + Estabilizadores",
+    tabLabel: "B-E",
+    exercises: [
+      { id:"be2", name:"Face Pull com Corda", img:"images/Face-Pull.gif" },
+      { id:"be3", name:"Rotação Externa no Cabo", img:"images/Rotacao-Externa-Cabo.gif" },
+      { id:"be4", name:"Rosca Martelo", img:"images/Rosca-Martelo.gif" },
+      { id:"be5", name:"Rosca Punho (Wrist Curl)", img:"images/Rosca-Punho.gif" },
+      { id:"be6", name:"Rosca Punho Reversa", img:"images/Rosca-Punho-Reversa.gif" },
+      { id:"be1", name:"Encolhimento com Halteres (Isometria 2–3s)", img:"images/Encolhimento-Halteres.gif" }
+    ]
+  },
+
   // =========================
   // Vitória
   // =========================
@@ -194,7 +196,6 @@ const todayKey = new Date().toISOString().slice(0,10);
 
 function loadState(){
   const raw = localStorage.getItem(STORAGE_KEY);
-  // activeWorkout precisa existir no WORKOUTS (no seu caso "B-A")
   if (!raw) return { activeWorkout: "B-A", logs: {}, loads: {}, reps: {} };
 
   try {
@@ -210,7 +211,7 @@ function loadState(){
     return { activeWorkout: "B-A", logs: {}, loads: {}, reps: {} };
   }
 }
-function saveState(state){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function saveState(next){ localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); }
 
 let state = loadState();
 
@@ -232,7 +233,7 @@ function renderTabs(){
     const wk = WORKOUTS[k];
     const btn = document.createElement("button");
     btn.className = "tabbtn" + (state.activeWorkout===k ? " active" : "");
-    btn.textContent = wk.tabLabel ?? k; // usa tabLabel (sem mudar nomes)
+    btn.textContent = wk.tabLabel ?? k;
     btn.onclick = ()=>{ state.activeWorkout = k; saveState(state); render(); };
     tabs.appendChild(btn);
   });
@@ -252,7 +253,6 @@ function showFinishModal(){
   const modal = document.getElementById("finishModal");
   if (modal) modal.style.display = "block";
 }
-
 function hideFinishModal(){
   const modal = document.getElementById("finishModal");
   if (modal) modal.style.display = "none";
@@ -302,6 +302,7 @@ function renderCards(){
 
     const thumb = document.createElement("div");
     thumb.className = "thumb";
+
     const imgtag = document.createElement("img");
     imgtag.src = ex.img;
     imgtag.alt = ex.name;
@@ -310,12 +311,14 @@ function renderCards(){
 
     const info = document.createElement("div");
     info.style.minWidth = "0";
+
     const title = document.createElement("h3");
     title.className = "title";
     title.textContent = ex.name;
 
     const meta = document.createElement("div");
     meta.className = "meta";
+
     const m1 = document.createElement("span");
     m1.className = "pill";
     m1.textContent = `${SETS_DEFAULT} séries`;
@@ -340,6 +343,7 @@ function renderCards(){
 
     const check = document.createElement("label");
     check.className = "check";
+
     const chk = document.createElement("input");
     chk.type = "checkbox";
     chk.checked = done;
@@ -350,15 +354,14 @@ function renderCards(){
       if (chk.checked && isWorkoutComplete(state.activeWorkout)) {
         showFinishModal();
       }
-
       render();
     };
 
     const chkTxt = document.createElement("span");
     chkTxt.textContent = "Marcar como feito";
+
     check.appendChild(chk);
     check.appendChild(chkTxt);
-
     line1.appendChild(check);
 
     const line2 = document.createElement("div");
@@ -367,12 +370,18 @@ function renderCards(){
     const load = document.createElement("input");
     load.placeholder = "Carga";
     load.value = state.loads[ex.id] ?? "";
-    load.onchange = ()=>{ state.loads[ex.id] = load.value; saveState(state); };
+    load.addEventListener("change", ()=>{
+      state.loads[ex.id] = load.value;
+      saveState(state);
+    });
 
     const reps = document.createElement("input");
     reps.placeholder = "Reps";
     reps.value = state.reps[ex.id] ?? "";
-    reps.onchange = ()=>{ state.reps[ex.id] = reps.value; saveState(state); };
+    reps.addEventListener("change", ()=>{
+      state.reps[ex.id] = reps.value;
+      saveState(state);
+    });
 
     line2.appendChild(load);
     line2.appendChild(reps);
@@ -396,7 +405,7 @@ function resetDay(){
   render();
 }
 
-document.getElementById("resetDayBtn").onclick = resetDay;
+document.getElementById("resetDayBtn").addEventListener("click", resetDay);
 
 function render(){
   setTodayText();
@@ -405,6 +414,7 @@ function render(){
   bindFinishModalHandlers();
   renderCards();
 }
+
 render();
 
 if ("serviceWorker" in navigator) {
@@ -414,11 +424,3 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
